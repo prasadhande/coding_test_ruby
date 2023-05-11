@@ -39,3 +39,15 @@ def connect_to_printer
   # code to connect to the printer goes here
   # return a printer object
 end
+
+
+
+
+# create an array of page numbers
+pages = (1..5000).to_a
+
+# simulate dog eating a page
+pages.delete_at(rand(5000))
+
+# find the missing page and print it
+find_missing_page(pages)
