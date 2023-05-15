@@ -60,3 +60,30 @@
 
 ## Bonus: try to code a solution that reads the fewest possible books in the input pile.
 
+def count_books_to_reverse(book_titles)
+  initial_order = book_titles.sort_by(&:downcase)
+  reversed_order = book_titles.reverse
+
+  count = 0
+  initial_order.zip(reversed_order).each do |initial, reversed|
+    break if initial == reversed
+
+    count += 1
+  end
+
+  count
+end
+
+
+book_titles = [
+  "Harry Potter and the Prisoner of Azkaban",
+  "Gone With the Wind",
+  "Frankenstein or The Modern Prometheus",
+  "Band of Brothers",
+  "The Caves of Steel",
+  "The Grapes of Wrath",
+  "Ubik"
+]
+
+books_to_reverse = count_books_to_reverse(book_titles)
+puts "Number of books to reverse: #{books_to_reverse}"
