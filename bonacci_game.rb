@@ -81,4 +81,48 @@ Numbers can move to a square that a fusing has just emptied.
 | 1|  |  |  |                     |  |  |  |  |
 -------------                     -------------
 
-Let’s hype!
+  def push(board, direction)
+  case direction
+  when "up"
+    board.transpose.each { |row| push_left(row) }
+  when "down"
+    board.transpose.each { |row| push_right(row) }
+  when "left"
+    board.each { |row| push_left(row) }
+  when "right"
+    board.each { |row| push_right(row) }
+  end
+  board
+end
+
+def push_left(row)
+  row.compact!
+  row.each_with_index do |num, index|
+    if num == row[index + 1]
+      row[index] = num + row[index + 1]
+      row[index + 1] = nil
+    end
+  end
+  row.compact!
+  row.concat([nil] * (4 - row.length))
+end
+
+def push_right(row)
+  row.reverse!
+  push_left(row)
+  row.reverse!
+end
+
+## Testing
+initial_board = [
+  [0, 0, 1, 2],
+  [1, 0, 1, 0],
+  [0, 8, 5, 0],
+  [0, 5, 8, 0]
+]
+direction = "right"
+updated_board = push(initial_board, direction)
+puts updated_board.inspect
+
+
+
