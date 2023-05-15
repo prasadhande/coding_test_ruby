@@ -46,3 +46,20 @@ class CandyMan
     (@red_candy_count.to_f / @candy_count) * 100
   end
 end
+
+
+
+candyman = CandyMan.new
+
+candyman.add_candy(10, "green")
+candyman.add_candy(15, "red")
+candyman.add_candy(12, "green")
+
+random_candy = candyman.get_a_random_candy
+puts "Random candy: #{random_candy}" # Example output: Random candy: [10, "green"]
+
+average_size = candyman.get_average_size
+puts "Average size: #{average_size}" # Example output: Average size: 12.333333333333334
+
+red_candy_chance = candyman.get_red_candy_chance
+puts "Red candy chance: #{red_candy_chance}%" # Example output: Red candy chance: 33.333333333333336%
